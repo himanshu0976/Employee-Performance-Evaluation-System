@@ -1,0 +1,5 @@
+com\eps\model\EvaluationTest.class
+com\eps\util\H2FallbackTest.class
+com\eps\util\PasswordUtilTest.class
+com\eps\e2e\E2EHttpFlowTest.class
+com\eps\service\IntegrationFlowTest.class
