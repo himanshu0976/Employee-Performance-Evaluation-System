@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Employee Performance Evaluation System (EPS)
 
 [![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
@@ -367,6 +366,3 @@ For in-depth architectural and structural diagrams, refer to the `docs/` directo
 - [Entity-Relationship (ER) Diagram & Schemas](file:///docs/er-diagram.md)
 - [Architecture & OOP Design Patterns](file:///docs/architecture.md)
 - [Project Presentation Slide Deck Outline](file:///docs/presentation-outline.md)
-=======
-# Employee-Performance-Evaluation-System
->>>>>>> ced895950fe13ce4d0ac899b07670266b597cc0b
