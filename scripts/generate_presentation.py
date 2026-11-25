@@ -175,13 +175,12 @@ def create_deck():
 
     p3 = ttf.add_paragraph()
     p3.space_before = Pt(8)
-    p3.text = "An Enterprise Classical MVC Web Platform for Objective Workforce Appraisals, Multi-Tier Scoring & Real-Time Performance Analytics"
+    p3.text = "An Enterprise Classical MVC Web Platform for Objective Workforce Appraisals, Multi-Tier Ratings & Real-Time Performance Analytics"
     p3.font.name = "Segoe UI"
     p3.font.size = Pt(11.5)
     p3.font.color.rgb = RGBColor(203, 213, 225)
 
     # Separate Professional Team Members Section (Left Side)
-    # Header label for Team Section
     tm_label_box = slide1.shapes.add_textbox(Inches(0.8), Inches(3.45), Inches(7.4), Inches(0.35))
     tm_ltf = tm_label_box.text_frame
     tm_ltf.margin_left = Pt(0)
@@ -218,7 +217,6 @@ def create_deck():
             cell.margin_top = Pt(4)
             cell.margin_bottom = Pt(4)
 
-            # Styling
             if row_idx == 0:
                 cell.fill.solid()
                 cell.fill.fore_color.rgb = BLUE_DARK
@@ -337,7 +335,7 @@ def create_deck():
     cf2 = ct2.text_frame
     cf2.word_wrap = True
     p = cf2.paragraphs[0]
-    p.text = "• Eliminate Subjectivity: Replaces arbitrary manager opinions with standardized mathematical grading across 6 key performance criteria.\n\n• Accountability & Transparency: Empowers employees with direct visibility into scoring breakdowns, manager feedback, and growth areas.\n\n• Timely Appraisals: Schedules and enforces structured evaluation cycles (Upcoming, Active, Completed) avoiding year-end review backlogs.\n\n• Audit & Compliance: Maintains tamper-proof appraisal histories and secure records."
+    p.text = "• Eliminate Subjectivity: Replaces arbitrary manager opinions with standardized mathematical grading across 6 key performance criteria.\n\n• Accountability & Transparency: Empowers employees with direct visibility into performance breakdowns, manager feedback, and growth areas.\n\n• Timely Appraisals: Schedules and enforces structured evaluation cycles (Upcoming, Active, Completed) avoiding year-end review backlogs.\n\n• Audit & Compliance: Maintains tamper-proof appraisal histories and secure records."
     p.font.name = "Segoe UI"
     p.font.size = Pt(10)
     p.font.color.rgb = TEXT_DARK
@@ -347,7 +345,7 @@ def create_deck():
     cf3 = ct3.text_frame
     cf3.word_wrap = True
     p = cf3.paragraphs[0]
-    p.text = "• Automated Scoring Engine: Computes weighted scores and maps employees automatically to 5 objective rating tiers.\n\n• Multi-Axis Competency Radar: Visualizes individual strengths and improvement dimensions using Chart.js.\n\n• Executive Analytics: Delivers organization-wide department score comparisons and rating distribution charts.\n\n• One-Click CSV Export: Instantly generates RFC-4180 compliant CSV exports for HR data integration."
+    p.text = "• Automated Evaluation Engine: Computes weighted ratings and maps employees automatically to 5 objective performance tiers.\n\n• Multi-Axis Competency Radar: Visualizes individual strengths and improvement dimensions using Chart.js.\n\n• Executive Analytics: Delivers organization-wide department performance comparisons and rating distribution charts.\n\n• One-Click CSV Export: Instantly generates RFC-4180 compliant CSV exports for HR data integration."
     p.font.name = "Segoe UI"
     p.font.size = Pt(10)
     p.font.color.rgb = TEXT_DARK
@@ -378,11 +376,10 @@ def create_deck():
     add_header(slide3, "Problem Context", "Problem Statement: Challenges in Manual Performance Appraisals",
                "Why conventional spreadsheet and paper-based evaluation workflows fail in modern organizations", 3)
 
-    # 4 Challenge vs Solution Blocks
     problems = [
         ("Manual Calculations & Formula Errors",
          "Spreadsheets require manual entry of weighted averages, leading to rounding mistakes, miscalculated ratings, and disputes during annual promotions.",
-         "Automated scoring algorithm with precision rounding and automated classification into 5 distinct rating tiers."),
+         "Automated calculation algorithm with precision rounding and automated classification into 5 distinct rating tiers."),
         ("Subjectivity, Bias & Lack of Standardization",
          "Different managers grade with varying leniency; without fixed weights and standardized criteria, performance standards differ wildly across departments.",
          "Unified 6-criteria matrix (Attendance, Quality, Productivity, Teamwork, Communication, Goals) summing to 100%."),
@@ -420,7 +417,7 @@ def create_deck():
         p_iss_lbl.font.name = "Segoe UI"
         p_iss_lbl.font.size = Pt(8)
         p_iss_lbl.font.bold = True
-        p_iss_lbl.font.color.rgb = RGBColor(220, 38, 38) # Red
+        p_iss_lbl.font.color.rgb = RGBColor(220, 38, 38)
 
         p_iss = tf.add_paragraph()
         p_iss.text = issue
@@ -462,10 +459,10 @@ def create_deck():
          ]),
         ("Automated Evaluation Management",
          GREEN_ACCENT,
-         "Standardize appraisal scoring using a mathematically weighted 6-criteria evaluation engine.",
+         "Standardize appraisal workflows using a mathematically weighted 6-criteria evaluation engine.",
          [
              "Admin governance over 6 performance criteria and dynamic weightages.",
-             "Manager workflow with real-time JavaScript weighted preview as scores are keyed.",
+             "Manager workflow with real-time JavaScript weighted preview as criterion inputs are adjusted.",
              "Draft mode allowing evaluators to pause and resume assessments.",
              "Automated rating assignment: Outstanding (4.5–5.0) down to Unsatisfactory (<1.5)."
          ]),
@@ -487,8 +484,6 @@ def create_deck():
         h = Inches(5.5)
 
         card = add_card(slide4, l, t, w, h)
-
-        # Top colored banner
         top_bar = slide4.shapes.add_shape(MSO_SHAPE.RECTANGLE, l, t, w, Inches(0.1))
         top_bar.fill.solid()
         top_bar.fill.fore_color.rgb = color
@@ -562,7 +557,7 @@ def create_deck():
          [("Bootstrap 5.3.3", "Responsive mobile-first layout, flexbox grid, modern clean cards, and modal dialogs."),
           ("Chart.js 4.4.2", "Dynamic client-side visualizations: 6-axis Radar, Department Bar, and Rating Doughnut."),
           ("Bootstrap Icons 1.11.3", "Consistent vector iconography across navigation, actions, and KPI widgets."),
-          ("Custom CSS & main.js", "Live client-side scoring formula calculations and interactive password visibility.")])
+          ("Custom CSS & main.js", "Live client-side formula calculations and interactive password visibility.")])
     ]
 
     for i, (cat_title, items) in enumerate(tech_categories):
@@ -607,7 +602,7 @@ def create_deck():
          "EncodingFilter forces UTF-8 character encoding. AuthFilter validates user session state, prevents unauthorized route traversal, and strictly enforces Role-Based Access Control (/admin/*, /manager/*, /employee/*).",
          RGBColor(241, 245, 249), NAVY_MID),
         ("3. Controller & Business Service Tier (Jakarta Servlets & ServiceImpl)",
-         "Front Controller Servlets (@WebServlet) handle routing and validation. Delegate business rules to Service interfaces (AuthService, EvaluationService, DepartmentService, ReportService). Encapsulates weighted scoring math.",
+         "Front Controller Servlets (@WebServlet) handle routing and validation. Delegate business rules to Service interfaces (AuthService, EvaluationService, DepartmentService, ReportService). Encapsulates weighted evaluation math.",
          BLUE_LIGHT, BLUE_DARK),
         ("4. Data Persistence & Infrastructure Tier (DAO Layer, HikariCP, MySQL 8)",
          "GenericDao<T, ID> contract implemented via JDBC PreparedStatements. HikariCP connection pool optimizes database leases. MySQL 8 stores normalized data in 3NF with automated H2 fallback resilience.",
@@ -645,7 +640,7 @@ def create_deck():
         ("Step 1: User Request", "Browser sends HTTP GET/POST with credentials or form data."),
         ("Step 2: AuthFilter Check", "Intercepts URL; verifies active session and role permission."),
         ("Step 3: Servlet Dispatch", "Extracts parameters, calls ValidationUtil, delegates to Service."),
-        ("Step 4: Business Execution", "Service performs calculations (e.g. weighted score & rating)."),
+        ("Step 4: Business Execution", "Service performs calculations (e.g. weighted rating & performance tier)."),
         ("Step 5: DAO Persistence", "Executes parameterized PreparedStatement via HikariCP."),
         ("Step 6: JSP Rendering", "Populates request attributes; forwards to view with JSTL/Chart.js.")
     ]
@@ -675,12 +670,12 @@ def create_deck():
 
     db_tables = [
         ("users", "id (PK), username (UK), password_hash, role (ENUM), full_name, email (UK), phone, is_active", "Stores credentials (BCrypt hashed) & global role definitions."),
-        ("departments", "id (PK), name (UK), code (UK), description, created_at", "Organizational units (Engineering, Marketing, Human Resources)."),
+        ("departments", "id (PK), name (UK), code (UK), description, created_at", "Organizational units (Engineering, Operations, Human Resources)."),
         ("employees", "id (PK), user_id (FK, UK), employee_code (UK), department_id (FK), manager_id (FK), designation, hire_date, salary", "1:1 link with users table; references department & assigned manager."),
         ("evaluation_cycles", "id (PK), title, description, start_date, end_date, status (ENUM: UPCOMING, ACTIVE, COMPLETED)", "Defines performance review windows and governance state."),
         ("evaluation_criteria", "id (PK), name (UK), description, weightage (DECIMAL), is_active", "The 6 performance evaluation dimensions summing to 100% weight."),
-        ("evaluations", "id (PK), cycle_id (FK), employee_id (FK), evaluator_id (FK), total_score, rating, status (ENUM), feedback", "Master evaluation record holding calculated rating and status."),
-        ("evaluation_scores", "id (PK), evaluation_id (FK), criteria_id (FK), score (1.0-5.0), feedback (TEXT)", "Detailed breakdown of scores and specific feedback per criterion.")
+        ("evaluations", "id (PK), cycle_id (FK), employee_id (FK), evaluator_id (FK), total_rating, rating_tier, status (ENUM), feedback", "Master evaluation record holding calculated rating tier and status."),
+        ("evaluation_details", "id (PK), evaluation_id (FK), criteria_id (FK), rating_value (1.0-5.0), feedback (TEXT)", "Detailed breakdown of criterion evaluations and specific feedback.")
     ]
 
     t_card = add_card(slide7, Inches(0.8), Inches(1.5), Inches(8.0), Inches(5.5), "Relational Database Schema (eps_db)")
@@ -721,8 +716,8 @@ def create_deck():
         ("departments ↔ employees (1 : N)", "A department houses multiple employees; SET NULL on department deletion."),
         ("managers ↔ employees (1 : N)", "A manager supervises multiple staff; reassigned dynamically by Admin."),
         ("cycles ↔ evaluations (1 : N)", "An evaluation cycle groups multiple employee reviews (uq_cycle_employee)."),
-        ("evaluations ↔ scores (1 : N)", "Each evaluation contains exactly 6 criteria scores (uq_eval_criterion)."),
-        ("criteria ↔ scores (1 : N)", "A criterion is graded across numerous evaluations with historical integrity.")
+        ("evaluations ↔ details (1 : N)", "Each evaluation contains exactly 6 criteria entries (uq_eval_criterion)."),
+        ("criteria ↔ details (1 : N)", "A criterion is evaluated across numerous appraisals with historical integrity.")
     ]
 
     for j, (rtitle, rdesc) in enumerate(rels):
@@ -752,7 +747,7 @@ def create_deck():
         ("🛡️ Administrator Module",
          BLUE_PRIMARY,
          [
-             ("Organization Dashboard", "Real-time summary KPIs (headcount, review cycles, average score, rating distributions)."),
+             ("Organization Dashboard", "Real-time summary KPIs (headcount, review cycles, average performance, rating distributions)."),
              ("Departments CRUD", "Create, list, update, and delete company divisions with unique code validation."),
              ("Employees Directory", "Onboard employees, configure job designations, salaries, hire dates, and manager mappings."),
              ("Evaluation Criteria", "Configure the 6 performance criteria and adjust percentage weightages."),
@@ -763,7 +758,7 @@ def create_deck():
          GREEN_ACCENT,
          [
              ("Direct Reports Roster", "View assigned team members filtered by department with evaluation status badges."),
-             ("Live Evaluation Form", "Grade 6 performance criteria (1.0 to 5.0) with real-time weighted score calculation."),
+             ("Live Evaluation Form", "Grade 6 performance criteria (1.0 to 5.0) with real-time weighted calculation."),
              ("Qualitative Feedback", "Provide granular feedback per criterion plus overall summary, strengths & improvements."),
              ("Draft & Final Modes", "Save partial evaluation drafts or permanently submit finalized appraisals."),
              ("Employee Growth Tracking", "Monitor historical review trajectories to support promotion and mentorship decisions.")
@@ -771,7 +766,7 @@ def create_deck():
         ("👤 Employee Module",
          CYAN_ACCENT,
          [
-             ("Personal Self-Service", "View latest evaluation score, rating badge (e.g. Outstanding), and manager appraisal."),
+             ("Personal Self-Service", "View latest evaluation appraisal, rating badge (e.g. Outstanding), and manager review."),
              ("Competency Radar Chart", "Dynamic 6-axis Chart.js radar chart mapping individual strengths vs expectations."),
              ("Evaluation History", "Chronological archive of past performance appraisals across previous review cycles."),
              ("Printable Review Sheet", "Dedicated clean print-ready layout for personal records or offline HR discussions."),
@@ -826,7 +821,7 @@ def create_deck():
 
     shots = [
         ("screenshot_login.png", "1. Authentication Portal", "BCrypt secure login, role demo quick-fill buttons, password visibility toggle", Inches(0.8), Inches(1.5)),
-        ("screenshot_admin.png", "2. Admin Analytics Dashboard", "Department score bar chart, rating breakdown doughnut chart, recent reviews", Inches(6.8), Inches(1.5)),
+        ("screenshot_admin.png", "2. Admin Analytics Dashboard", "Department performance bar chart, rating breakdown doughnut chart, recent reviews", Inches(6.8), Inches(1.5)),
         ("screenshot_manager.png", "3. Manager Direct Reports", "Assigned team roster, evaluation cycle status flags, one-click review actions", Inches(0.8), Inches(4.4)),
         ("screenshot_employee.png", "4. Employee Radar Dashboard", "Live Chart.js competency radar chart, performance rating badge, manager notes", Inches(6.8), Inches(4.4))
     ]
@@ -862,7 +857,7 @@ def create_deck():
             slide9.shapes.add_picture(img_path, l + Inches(0.12), img_top, img_w, img_h)
 
     # =========================================================================
-    # SLIDE 10: Code Quality & Testing (Zero Marks Reference)
+    # SLIDE 10: Code Quality & Testing
     # =========================================================================
     slide10 = prs.slides.add_slide(blank_layout)
     add_header(slide10, "Quality Assurance", "Code Quality & Rigorous Testing: Architecture & Verification",
@@ -926,7 +921,7 @@ def create_deck():
     rp3.font.color.rgb = TEXT_MUTED
 
     # =========================================================================
-    # SLIDE 11: Teamwork & Innovation (Dedicated Team Table & Zero Marks)
+    # SLIDE 11: Teamwork & Innovation (Dedicated Team Table)
     # =========================================================================
     slide11 = prs.slides.add_slide(blank_layout)
     add_header(slide11, "Team & Innovation", "Team Collaboration & System Innovation: Engineering Ownership & Breakthroughs",
@@ -1028,8 +1023,8 @@ def create_deck():
          "Engineered DBUtil to attempt MySQL 8 connection first; if offline or unauthenticated, it seamlessly boots an embedded H2 database with automatic schema/seed execution—guaranteeing 100% zero-crash uptime during evaluations!"),
         ("Interactive Chart.js Competency Radar",
          "Introduced multi-axis radar chart mapping individual strengths vs baseline expectations, transforming dry tables into actionable growth visualizations."),
-        ("Live Client-Side Weighted Score Preview",
-         "Custom JavaScript calculation engine in evaluate-form.jsp computes real-time score and rating badge as managers adjust inputs before submission."),
+        ("Live Client-Side Weighted Rating Preview",
+         "Custom JavaScript calculation engine in evaluate-form.jsp computes real-time weighted rating and tier badge as managers adjust inputs before submission."),
         ("RFC-4180 Compliant CSV Streaming",
          "Custom CSV streaming export service handling proper field quoting, multi-parameter filtering, and direct HTTP file attachment delivery.")
     ]
@@ -1051,7 +1046,7 @@ def create_deck():
         p2.font.color.rgb = TEXT_DARK
 
     # =========================================================================
-    # SLIDE 12: Conclusion & Future Scope (Executive Dark, Zero Marks)
+    # SLIDE 12: Conclusion & Future Scope (Executive Dark)
     # =========================================================================
     slide12 = prs.slides.add_slide(blank_layout)
     bg12 = slide12.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(7.5))
@@ -1142,7 +1137,7 @@ def create_deck():
         p.font.size = Pt(9.5)
         p.font.color.rgb = RGBColor(226, 232, 240)
 
-    # Bottom Thank You & Assessment Banner (No Marks)
+    # Bottom Thank You & Credentials Banner
     ty_box = slide12.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(5.8), Inches(11.7), Inches(1.2))
     ty_box.fill.solid()
     ty_box.fill.fore_color.rgb = RGBColor(24, 34, 53)
