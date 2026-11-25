@@ -1,12 +1,28 @@
+# Maven build outputs
 target/
 *.class
-*.log
 *.war
+*.ear
+
+# Logs
+*.log
+logs/
+
+# Secrets and environment configs
 .env
+src/main/resources/db.properties
+
+# IDE and Project metadata
 .idea/
 *.iml
 .vscode/
 .settings/
 .project
 .classpath
+
+# OS and temporary files
+Thumbs.db
+Desktop.ini
+.DS_Store
 cookies.txt
+*.tmp

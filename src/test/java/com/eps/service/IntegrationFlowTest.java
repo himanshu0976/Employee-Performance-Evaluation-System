@@ -149,4 +149,115 @@ public class IntegrationFlowTest {
         assertTrue(csv.contains("Total Score"));
         assertTrue(csv.contains("Rating"));
     }
+
+    @Test
+    public void testAdminDepartmentCRUD() {
+        Department dept = new Department();
+        dept.setName("Operations & Logistics");
+        dept.setCode("OPS");
+        dept.setDescription("Supply chain, field operations, and facilities management");
+
+        Department created = departmentService.createDepartment(dept);
+        assertNotNull(created);
+        assertNotNull(created.getId());
+
+        Department fetched = departmentService.getDepartmentById(created.getId());
+        assertEquals("Operations & Logistics", fetched.getName());
+        assertEquals("OPS", fetched.getCode());
+
+        fetched.setDescription("Updated operations description");
+        departmentService.updateDepartment(fetched);
+
+        Department updated = departmentService.getDepartmentById(created.getId());
+        assertEquals("Updated operations description", updated.getDescription());
+
+        departmentService.deleteDepartment(created.getId());
+        assertThrows(com.eps.exception.ResourceNotFoundException.class, () -> departmentService.getDepartmentById(created.getId()));
+    }
+
+    @Test
+    public void testEvaluationRatingBandsExhaustive() {
+        assertEquals("Outstanding", Evaluation.determineRating(new BigDecimal("5.00")));
+        assertEquals("Outstanding", Evaluation.determineRating(new BigDecimal("4.50")));
+        assertEquals("Exceeds Expectations", Evaluation.determineRating(new BigDecimal("4.49")));
+        assertEquals("Exceeds Expectations", Evaluation.determineRating(new BigDecimal("3.50")));
+        assertEquals("Meets Expectations", Evaluation.determineRating(new BigDecimal("3.49")));
+        assertEquals("Meets Expectations", Evaluation.determineRating(new BigDecimal("2.50")));
+        assertEquals("Needs Improvement", Evaluation.determineRating(new BigDecimal("2.49")));
+        assertEquals("Needs Improvement", Evaluation.determineRating(new BigDecimal("1.50")));
+        assertEquals("Unsatisfactory", Evaluation.determineRating(new BigDecimal("1.49")));
+        assertEquals("Unsatisfactory", Evaluation.determineRating(new BigDecimal("0.50")));
+        assertEquals("Unsatisfactory", Evaluation.determineRating(null));
+    }
+
+    @Test
+    public void testEvaluationScoreZeroWeightFallback() {
+        Evaluation eval = new Evaluation();
+        List<EvaluationScore> scores = new java.util.ArrayList<>();
+
+        EvaluationScore s1 = new EvaluationScore();
+        s1.setScore(new BigDecimal("4.00"));
+        s1.setWeightage(BigDecimal.ZERO);
+        scores.add(s1);
+
+        EvaluationScore s2 = new EvaluationScore();
+        s2.setScore(new BigDecimal("2.00"));
+        s2.setWeightage(BigDecimal.ZERO);
+        scores.add(s2);
+
+        eval.setScores(scores);
+        eval.calculateTotalScoreAndRating();
+
+        // Fallback to unweighted arithmetic mean: (4.0 + 2.0) / 2 = 3.00
+        assertEquals(new BigDecimal("3.00"), eval.getTotalScore());
+        assertEquals("Meets Expectations", eval.getRating());
+    }
+
+    @Test
+    public void testManagerSubmitDraftAndFinal() {
+        User manager1 = authService.authenticate("manager1", "Manager@123");
+        List<EvaluationCriteria> criteriaList = criteriaService.getActiveCriteria();
+        List<EvaluationScore> scores = new java.util.ArrayList<>();
+
+        for (EvaluationCriteria c : criteriaList) {
+            EvaluationScore s = new EvaluationScore();
+            s.setCriteriaId(c.getId());
+            s.setCriteriaName(c.getName());
+            s.setWeightage(c.getWeightage());
+            s.setScore(new BigDecimal("4.0"));
+            s.setFeedback("Solid performance");
+            scores.add(s);
+        }
+
+        // Save Draft for employee 5 (Ethan Hunt)
+        Evaluation draft = evaluationService.saveOrSubmitEvaluation(
+                2, 5, manager1.getId(), scores, "Draft notes", "Quick learner", "Deadline adherence", false);
+        assertNotNull(draft);
+        assertEquals(Evaluation.Status.DRAFT, draft.getStatus());
+
+        // Final Submit for employee 5
+        Evaluation submitted = evaluationService.saveOrSubmitEvaluation(
+                2, 5, manager1.getId(), scores, "Final review notes", "Fast execution", "Code reviews", true);
+        assertNotNull(submitted);
+        assertEquals(Evaluation.Status.SUBMITTED, submitted.getStatus());
+        assertEquals("Exceeds Expectations", submitted.getRating());
+    }
+
+    @Test
+    public void testRoleAuthorizationPrivileges() {
+        User admin = authService.authenticate("admin", "Admin@123");
+        assertTrue(admin.isAdmin());
+        assertFalse(admin.isManager());
+        assertFalse(admin.isEmployee());
+
+        User manager = authService.authenticate("manager1", "Manager@123");
+        assertFalse(manager.isAdmin());
+        assertTrue(manager.isManager());
+        assertFalse(manager.isEmployee());
+
+        User emp = authService.authenticate("emp1", "Employee@123");
+        assertFalse(emp.isAdmin());
+        assertFalse(emp.isManager());
+        assertTrue(emp.isEmployee());
+    }
 }
